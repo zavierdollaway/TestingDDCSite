@@ -7,6 +7,7 @@
   <title>Dexterous Design Challenge</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="Assets/favicon.png">
+  <script src="photoReel.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -55,23 +56,49 @@
   </header>
 
   <main>
-    <section>
-        <img width=100% src="Assets/DDCCeremony.JPG">
+    <section aria-label="Image Carousel">
+      <div class="photo-reel-container" id="photo-reel-container" tabindex="0" aria-label="ASME Event Showcase Photo Reel">
+          <div id="photo-reel"></div>
+          <button type="button" onclick="prev();" id="prev"class="carousel-btn" aria-label="Previous Slide">&#10094;</button>
+          <button type="button" onclick="next();" id="next"class="carousel-btn" aria-label="Next Slide">&#10095;</button>
+      </div>
     </section>
     <br/>
     <section class="container">
+      <h2 class="centered">Dexterous Design Challenge</h2>
       <div class="image-text-row">
-        <div>
-          <h2>Dexterous Design Challenge</h2>
           <p>
             The <b>HAND ERC: Dexterous Design Challenge</b> is an 8-Week competition in which multidisciplinary enginering teams of 4-6 people will learn the basics of dexterous robotics and build an 11-DOF hand that will compete in a series of dexterity benchmarks to quantify their success. Winning teams at each schools' local competition will have the opportunity to travel to Texas A&M University for the opportunity to compete in the National Dexterity Olympiad.
           </p>  
-        </div>
         <div>
           <img width=200 src="Assets/DDCLogo.png"/>
         </div>
       </div>
-      <hr/>
+      <br/>
+      <br/>
+      <br/>
+      <h1 class="centered">Inaugural Competition</h1>
+      <div class="stat-section">
+        <img class="stat-image" src="Assets/DDCCeremony.JPG">
+        <div class="resource-grid-3">
+          <div class="stat-card">
+            <h1>120+</h1>
+            <h3>Participants</h3>
+          </div>
+          <div class="stat-card">
+            <h1>20</h1>
+            <h3>Different Majors</h3>
+          </div>
+          <div class="stat-card">
+            <h1>7</h1>
+            <h3>Finalist Teams</h3>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
         <div class="image-text-row">
           <div>  
           <h2>HAND ERC</h2>
@@ -90,14 +117,19 @@
         <div>
           <h4>Human AugmentatioN via Dexterity Engineering Research Center</h4>
           <h4>(HAND ERC)</h4>
-          <h4>Email: asmetechtamu@gmail.com</h4>
+          <img width="275" src="Assets/Email.png">
         </div>
-        <img class="center-text" src="Assets/ASMETAMUT_Logo.png"/>
       </div>
       <h4 class="centered">Created in collaboration with the Texas A&M ASME Technology Student Chapter</h4>
       <br/>
   </section>
   </footer>
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        addPhotoReel();
+        goToPhoto(0);
+    });
+</script>
 </body>
 </html>

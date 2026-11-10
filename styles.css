@@ -20,6 +20,59 @@ a { color: inherit; text-decoration: none; }
 .side-by-side p { width: 450px; }
 .closer { line-height: 0.5; }
 
+/* Photo Reel */
+.photo-reel-container {
+    position: relative;
+    height: 605px;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--dark2);
+}
+
+#photo-reel {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+#photo-reel img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.carousel-btn {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+#prev { left: 20px; }
+#next { right: 20px; }
+
+.stat-section{mask-border-width: 90%;margin:auto}
+.stat-image{width:100%;border-radius: 12px;}
+
 /* Header and Navigation */
 .site-header { position: sticky; top: 0; z-index: 20; background: rgba(244, 246, 249, 0.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(16, 19, 22, 0.08); }
 .nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; }
@@ -58,7 +111,7 @@ a { color: inherit; text-decoration: none; }
 /* Resource Grids */
 .resource-grid-2, .resource-grid-3 { display: grid; width: 100%; gap: 24px; }
 .resource-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.resource-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.resource-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); width:85%;margin:auto;position:relative;z-index: 2;margin: -80px auto 0;}
 .resource-card { min-width: 0; padding: 15px;background:var(--ink);border-radius:15px;color:white}
 .resource-title{color: #B4B8BA}
 .footer-grid {display:grid;width:100%;gap:24px;grid-template-columns: repeat(2,minmax(0,1fr));}
@@ -66,21 +119,32 @@ a { color: inherit; text-decoration: none; }
 
 
 .image-text-row {width:75%;display: flex;align-items: center;column-gap: 42px;margin-bottom: 30px;margin:auto;text-align:left}
+.image-text-row p{font-size: 25px;}
 .image-text-image {flex: 0 0 500px;display: flex;justify-content: center;align-items: center;}
 .image-text-image img {display: block;width: 100%;max-height: 180px;object-fit: contain;}
 .image-text-content {flex: 1;min-width: 0;}
 
-/* Tablets and Smaller Laptops */
-@media (max-width: 1100px) {
-    .resource-grid-2, .resource-grid-3, .footer-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 1000px) {
+.stat-card{aspect-ratio: 5/3;padding:20px;background:var(--paper);border-radius: 12px;color:var(--ink);line-height:.25;align-content:center;justify-content: center;text-align:center;box-shadow:var(--ink);align-items: center;box-shadow: 0 -10px 10px 5px rgba(255, 255, 255, 0.2);border-bottom: 5px solid var(--ink)}
+.stat-card > h1{font-size:75px;font-weight: 2000;}
+.stat-card > h3{font-size: 25px;}
+
+
+/* ==========================================
+   TABLETS AND SMALLER LAPTOPS (1100px)
+   ========================================== */
+   @media (max-width: 1100px) {
+
+    /* Navigation Wrapper */
     .nav-wrap {
         position: relative;
         flex-wrap: wrap;
         height: auto;
         min-height: 78px;
         padding: 10px 0;
+    }
+
+    .header-logo {
+        display: none;
     }
 
     .menu-toggle {
@@ -91,63 +155,50 @@ a { color: inherit; text-decoration: none; }
         padding: 8px 12px;
     }
 
+    /* Navigation Menu */
     .nav {
         display: none;
         flex-direction: column;
         align-items: stretch;
-        gap: 0;
+        gap: 4px;
         width: 100%;
         padding: 10px 0;
         font-size: 16px;
     }
 
-    /* JavaScript adds this class when the menu is opened */
+    /* JavaScript opens the navigation */
+    .nav.open,
     .nav.active {
         display: flex;
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        width: min(320px, calc(100vw - 40px));
+
+        max-height: calc(100vh - 160px);
+        max-height: calc(100dvh - 160px);
+
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+
+        padding: 12px;
+        background: #f4f6f9;
+        border: 1px solid #dde2e8;
+        border-radius: 14px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        z-index: 30;
     }
 
     .nav > a {
         display: block;
-        padding: 12px 16px;
+        padding: 12px 15px;
     }
 
-    .nav .nav-but {
+    .nav > .nav-but {
         align-self: flex-start;
+        text-align: center;
         margin: 8px 12px;
-    }
-
-    /* Dropdowns expand inside the mobile menu */
-    .dropdown {
-        display: block;
-        width: 100%;
-    }
-
-    .dropbtn {
-        width: 100%;
-        justify-content: space-between;
-        text-align: left;
-    }
-
-    .dropdown-content,
-    .sub-dropdown-content {
-        position: static;
-        display: none;
-        width: 100%;
-        min-width: 0;
-        box-shadow: none;
-        border-top: none;
-        padding-left: 16px;
-    }
-
-    .dropdown.open > .dropdown-content,
-    .sub-dropdown.open > .sub-dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropdown-content,
-    .sub-dropdown:hover .sub-dropdown-content {
-        /* Prevent hover from controlling mobile dropdowns */
-        display: none;
     }
 
     .nav img {
@@ -157,23 +208,70 @@ a { color: inherit; text-decoration: none; }
         margin: 10px 16px;
     }
 
-    /* Your existing responsive page layouts */
+    /* Dropdowns */
+    .dropdown,
+    .sub-dropdown {
+        display: block;
+        width: 100%;
+    }
+
+    .dropbtn,
+    .nav .dropbtn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px 16px;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .dropdown-content,
+    .sub-dropdown-content {
+        display: none;
+        position: static;
+        width: 100%;
+        min-width: 0;
+        margin-left: 12px;
+        padding-left: 16px;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        border-left: 3px solid var(--ink);
+    }
+
+    .dropdown-content a,
+    .sub-dropdown-content a {
+        white-space: normal;
+    }
+
+    /* Disable hover-based dropdown opening */
+    .dropdown:hover > .dropdown-content,
+    .sub-dropdown:hover > .sub-dropdown-content {
+        display: none;
+    }
+
+    /* Open dropdowns */
+    .dropdown.open > .dropdown-content,
+    .sub-dropdown.open > .sub-dropdown-content,
+    .dropdown.open:hover > .dropdown-content,
+    .sub-dropdown.open:hover > .sub-dropdown-content {
+        display: block;
+    }
+
+    /* Page Layouts */
     .hero {
         padding-top: 65px;
     }
 
     .hero-grid,
     .challenge-grid,
-    .register-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-art {
-        min-height: 390px;
-    }
-
+    .register-grid,
     .cards.three,
-    .winner-grid {
+    .winner-grid,
+    .resource-grid,
+    .resource-grid-2,
+    .footer-grid {
         grid-template-columns: 1fr;
     }
 
@@ -181,16 +279,12 @@ a { color: inherit; text-decoration: none; }
         grid-template-columns: 1fr 1fr;
     }
 
-    .resource-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
     .register-grid {
         gap: 35px;
+    }
+
+    .hero-art {
+        min-height: 390px;
     }
 
     .hero h1 {
@@ -208,172 +302,114 @@ a { color: inherit; text-decoration: none; }
     .module-arrow {
         display: none;
     }
-}
-/* Navigation and Layout Adjustments */
-@media (max-width: 1000px) {
-    .header-logo, .nav { display: none; }
-    .center-text { width: 80%; }
-    .menu-toggle { display: block; }
-    .hero { padding-top: 65px; }
-    .hero-grid, .challenge-grid, .register-grid { grid-template-columns: 1fr; }
-    .hero-art { min-height: 390px; }
-    .cards.three, .winner-grid { grid-template-columns: 1fr; }
-    .timeline { grid-template-columns: 1fr 1fr; }
-    .resource-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .register-grid { gap: 35px; }
-    .hero h1 { letter-spacing: -2.5px; }
-    .hero-stats { gap: 20px; }
-    .module { grid-template-columns: 45px 1fr; }
-    .module-arrow { display: none; }
-    .image-text-row {width:80%;flex-direction: column;align-items: center;gap: 12px;}
-    .image-text-image {flex-basis: auto;width: 100%;}
-    .image-text-image img {max-height: 180px;}
-    /* Mobile dropdowns */
-    .dropdown {
-        display: block;
-        width: 100%;
+
+    /* Image and Text Layout */
+    .center-text {
+        width: 80%;
     }
 
-    .dropbtn {
-        display: flex;
+    .image-text-row {
+        width: 80%;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        gap: 12px;
+    }
+    
+    .image-text-row p {
+        font-size: 15px;
+    }
+
+    .image-text-image {
+        flex-basis: auto;
         width: 100%;
-        padding: 12px 16px;
-        text-align: left;
-        cursor: pointer;
     }
 
-    .dropdown-content,
-    .sub-dropdown-content {
-        display: none;
-        position: static;
-        width: 100%;
-        min-width: 0;
-        box-shadow: none;
-        border: none;
-        padding-left: 16px;
+    .image-text-image img {
+        max-height: 180px;
     }
 
-    /* Show menus when tapped */
-    .dropdown.open > .dropdown-content {
-        display: block;
+    /* Photo Carousel */
+    .photo-reel-container {
+        height: 250px;
     }
 
-    .sub-dropdown.open > .sub-dropdown-content {
-        display: block;
+    /* stat cards */
+    .resource-grid-3 {
+        grid-template-columns: 1fr;
+        margin:0px auto;
+        justify-content: center;
+    }
+    .stat-card > h1{font-size:45px;font-weight: 1000;}
+    .stat-card > h3{font-size: 15px;}
+    .stat-card{align-content:center}
+}
+
+
+/* ==========================================
+   PHONES AND SMALL TABLETS (700px)
+   ========================================== */
+@media (max-width: 700px) {
+
+    /* Reduce Page Margins */
+    .container {
+        width: calc(100% - 32px);
     }
 
-    /* Prevent desktop hover behavior from interfering */
+    /* Resource Cards */
+    .resource-grid-2,
+    .resource-grid-3 {
+        gap: 32px;
+    }
+
+    .resource-card {
+        padding: 16px;
+    }
+
+    /* Embedded Documents and PDFs */
+    iframe.embedded[src*="/document/"],
+    iframe.embedded[src*="drive.google.com"],
+    iframe.embedded[src$=".pdf"] {
+        aspect-ratio: auto;
+        height: 75vh;
+        height: 75dvh;
+        min-height: 420px;
+        max-height: 720px;
+    }
+
+    .pdf-container {
+        height: 75vh;
+        height: 75dvh;
+        min-height: 420px;
+    }
+}
+
+
+/* ==========================================
+   TOUCH DEVICE DROPDOWNS
+   ========================================== */
+@media (hover: none) {
+
+    /* Prevent simulated hover on touchscreens */
     .dropdown:hover > .dropdown-content,
     .sub-dropdown:hover > .sub-dropdown-content {
         display: none;
     }
 
-    /* Keep explicitly opened menus visible */
+    /* JavaScript controls dropdown visibility */
+    .dropdown.open > .dropdown-content,
+    .sub-dropdown.open > .sub-dropdown-content,
     .dropdown.open:hover > .dropdown-content,
     .sub-dropdown.open:hover > .sub-dropdown-content {
         display: block;
     }
 }
 
-/* Phones */
-@media (max-width: 600px) {
-    .resource-card { padding: 16px; }
-}
 
-/* ===== Mobile / touch dropdown menu =====
-   Paste this at the very BOTTOM of styles.css (after everything else).
-   The JS in script.js adds an "open" class to .nav, .dropdown and .sub-dropdown. */
-
-/* Phones and tablets: a tap (not hover) controls the dropdowns.
-   Hover is switched off here because touch browsers fake a "hover" on tap,
-   which would leave the menu stuck open and impossible to close. */
-   @media (max-width: 1000px), (hover: none) {
-    .dropdown:hover .dropdown-content,
-    .sub-dropdown:hover .sub-dropdown-content { display: none; }
-  
-    .dropdown.open > .dropdown-content,
-    .sub-dropdown.open > .sub-dropdown-content { display: block; }
-  }
-  
-  /* Narrow screens: the ☰ button opens a panel, dropdowns expand in place */
-  @media (max-width: 1000px) {
-    .nav.open {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 4px;
-      position: absolute;
-      top: 100%;
-      right: 20px;
-      width: min(320px, calc(100vw - 40px));
-      max-height: calc(100vh - 160px);   /* fallback; script.js sets the exact value */
-      max-height: calc(100dvh - 160px);
-      overflow-y: auto;
-      overscroll-behavior: contain;      /* scrolling the menu doesn't scroll the page */
-      -webkit-overflow-scrolling: touch;
-      padding: 12px;
-      background: #f4f6f9;
-      border: 1px solid #dde2e8;
-      border-radius: 14px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-      z-index: 30;
-    }
-  
-    .nav > a { padding: 12px 15px; }
-    .nav > .nav-but { text-align: center; margin-top: 6px; }
-  
-    .nav .dropdown,
-    .nav .sub-dropdown { display: block; width: 100%; }
-  
-    .nav .dropbtn { width: 100%; justify-content: space-between; text-align: left; }
-  
-    /* Expand inside the panel instead of floating off-screen */
-    .dropdown-content,
-    .sub-dropdown-content {
-      position: static;
-      min-width: 0;
-      margin-left: 12px;
-      background: transparent;
-      box-shadow: none;
-      border-top: 0;
-      border-left: 3px solid var(--ink);
-    }
-  
-    .dropdown-content a,
-    .sub-dropdown-content a { white-space: normal; }
-  }
-
-  /* ===== Mobile: embedded docs, slides and video =====
-   Paste at the very BOTTOM of styles.css (after the mobile menu block). */
-
-/* Embeds never overflow the screen */
-.embedded { display: block; max-width: 100%; border: 0; }
-
-/* Phones and small tablets */
-@media (max-width: 700px) {
-
-  /* The page gutter was 50px per side, which left only ~290px on a phone */
-  .container { width: calc(100% - 32px); }
-
-  .resource-grid-2,
-  .resource-grid-3 { gap: 32px; }
-
-  /* Video and slides are landscape, so 16:9 is right. They just get wider. */
-
-  /* Documents / PDFs are portrait. Give them height instead of a 16:9 box. */
-  iframe.embedded[src*="/document/"],
-  iframe.embedded[src*="drive.google.com"],
-  iframe.embedded[src$=".pdf"] {
-    aspect-ratio: auto;
-    height: 75vh;
-    height: 75dvh;
-    min-height: 420px;
-    max-height: 720px;
-  }
-
-  /* Your existing .pdf-container (used for PDFs) */
-  .pdf-container { height: 75vh; height: 75dvh; min-height: 420px; }
+/* ==========================================
+   GLOBAL EMBED RESPONSIVENESS
+   ========================================== */
+.embedded {
+    display: block;
+    max-width: 100%;
+    border: 0;
 }
