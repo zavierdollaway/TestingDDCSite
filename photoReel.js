@@ -1,10 +1,10 @@
 const photoObjs = [
-    { src: "Assets/Reel1.jpg", alt:"HAND DDC Demo 1"},
-    { src: "Assets/Reel2.jpg", alt:"HAND DDC Demo 1"},
-    { src: "Assets/Reel3.jpg", alt:"HAND DDC Demo 1"},
-    { src: "Assets/Reel4.jpg", alt:"HAND DDC Demo 1"},
-    { src: "Assets/Reel5.jpg", alt:"HAND DDC Demo 1"},
-    { src: "Assets/Reel6.jpg", alt:"HAND DDC Demo 1"},
+    { src: "Assets/Reel1.JPG", alt:"HAND DDC Demo 1"},
+    { src: "Assets/Reel2.JPG", alt:"HAND DDC Demo 1"},
+    { src: "Assets/Reel3.JPG", alt:"HAND DDC Demo 1"},
+    { src: "Assets/Reel4.JPG", alt:"HAND DDC Demo 1"},
+    { src: "Assets/Reel5.JPG", alt:"HAND DDC Demo 1"},
+    { src: "Assets/Reel6.JPG", alt:"HAND DDC Demo 1"},
 ];
 
 let photoReelContainer;
